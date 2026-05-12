@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-LYST+ | Advancing Lysosomal Science & Therapeutics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Crimson+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #f8fafc;
+            overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        /* Header with gradient accent */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+            padding: 1.2rem 3rem;
+            border-bottom: 4px solid transparent;
+            border-image: linear-gradient(90deg, #0ea5e9, #22d3ee, #84cc16, #fde047) 1;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #0ea5e9, #84cc16);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            font-family: 'IBM Plex Mono', monospace;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #64748b;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #84cc16);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #0ea5e9;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #0c4a6e;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 90px;
+            min-height: 100vh;
+        }
+
+        .page-content {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Content boxes */
+        .content-box {
+            background: white;
+            border-radius: 0;
+            padding: 4rem 3.5rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-top: 6px solid transparent;
+            border-image: linear-gradient(90deg, #0ea5e9, #84cc16) 1;
+        }
+
+        /* HOME PAGE */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 25%, #84cc16 75%, #fde047 100%);
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            margin: 0 0 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+
+        .hero::before {
+            width: 400px;
+            height: 400px;
+            background: #22d3ee;
+            top: -100px;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 500px;
+            height: 500px;
+            background: #fde047;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .hero-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            line-height: 1.1;
+            letter-spacing: 4px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.6rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.95);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Info cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 2.5rem;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 2rem 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, #22d3ee, #84cc16);
+        }
+
+        .info-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #22d3ee, #84cc16, #fde047);
+        }
+
+        .info-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #84cc16, #fde047, #0ea5e9);
+        }
+
+        .info-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.15);
+        }
+
+        .info-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0c4a6e;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* MPS Box */
+        .mps-box {
+            background: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 50%, #84cc16 100%);
+            color: white;
+            padding: 3.5rem;
+            border-radius: 0;
+            margin: 3rem auto;
+            max-width: 1200px;
+            box-shadow: 0 15px 50px rgba(14, 165, 233, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mps-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .mps-box h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.6rem;
+            margin-bottom: 1.8rem;
+            font-weight: 600;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .mps-box p {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2.2rem;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, #84cc16);
+        }
+
+        .section-subtitle {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            color: #64748b;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        /* Research Areas Grid */
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .research-area {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-left: 4px solid #bae6fd;
+            transition: all 0.3s;
+        }
+
+        .research-area:nth-child(even) {
+            border-left-color: #d9f99d;
+        }
+
+        .research-area:hover {
+            background: white;
+            transform: translateX(8px);
+            border-left-color: #0ea5e9;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .research-area h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1rem;
+            color: #0c4a6e;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .research-area p {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* PEOPLE PAGE */
+        .people-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .people-tab-btn {
+            font-family: 'IBM Plex Mono', monospace;
+            padding: 1rem 3rem;
+            background: none;
+            border: none;
+            border-bottom: 4px solid transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #64748b;
+            transition: all 0.3s;
+            font-weight: 600;
+            margin-bottom: -3px;
+            letter-spacing: 0.5px;
+        }
+
+        .people-tab-btn:hover {
+            color: #0ea5e9;
+            background: linear-gradient(to top, rgba(14, 165, 233, 0.05), transparent);
+        }
+
+        .people-tab-btn.active {
+            color: #0c4a6e;
+            border-bottom-color: transparent;
+            background: linear-gradient(to top, rgba(14, 165, 233, 0.1), transparent);
+            border-image: linear-gradient(90deg, #0ea5e9, #84cc16) 1;
+            border-image-slice: 0 0 1 0;
+        }
+
+        .people-tab-content {
+            display: none;
+        }
+
+        .people-tab-content.active {
+            display: block;
+        }
+
+        /* PI Section */
+        .pi-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 3.5rem;
+            margin-bottom: 5rem;
+            align-items: start;
+        }
+
+        .pi-image {
+            width: 100%;
+            border-radius: 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border: 5px solid white;
+            outline: 3px solid #e0f2fe;
+        }
+
+        .pi-info h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .pi-info .title {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .pi-info p {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            margin-bottom: 1.2rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .toggle-link {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0ea5e9;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .toggle-link:hover {
+            color: #0c4a6e;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            transition: transform 0.3s;
+            display: flex;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+
+        /* Team Section */
+        .team-section-header {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.4rem;
+            color: #0c4a6e;
+            margin: 4rem 0 2.5rem;
+            font-weight: 600;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(90deg, #0ea5e9, transparent) 1;
+            letter-spacing: 1px;
+        }
+
+        .team-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 0;
+            transition: all 0.3s;
+            border-left: 5px solid #e0f2fe;
+        }
+
+        .team-member:nth-child(odd) {
+            border-left-color: #bae6fd;
+        }
+
+        .team-member:nth-child(even) {
+            border-left-color: #d9f99d;
+        }
+
+        .team-member:hover {
+            background: white;
+            transform: translateX(8px);
+            border-left-color: #0ea5e9;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 0;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 4px solid white;
+        }
+
+        .member-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0c4a6e;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .member-role {
+            font-family: 'Crimson Pro', serif;
+            background: linear-gradient(90deg, #0ea5e9, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+
+        .member-bio {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .bio-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            color: #0c4a6e;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Easter Egg */
+        .easter-egg-member {
+            border-left: 5px solid #fde047;
+            background: linear-gradient(135deg, #fefce8, #fef9c3);
+            border: 3px dashed #facc15;
+        }
+
+        .easter-egg-member:hover {
+            background: linear-gradient(135deg, #fef9c3, #fef08a);
+            box-shadow: 0 10px 40px rgba(250, 204, 21, 0.2);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+            gap: 2.5rem;
+            padding: 0 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            background: white;
+            position: relative;
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.8), rgba(132, 204, 22, 0.8));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(14, 165, 233, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            font-family: 'Crimson Pro', serif;
+            padding: 1.8rem;
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+            background: white;
+        }
+
+        /* Publications */
+        .publication-year {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.6rem;
+            color: #0c4a6e;
+            margin: 3.5rem 0 2rem;
+            padding-bottom: 0.8rem;
+            font-weight: 600;
+            position: relative;
+            padding-left: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .publication-year::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(to bottom, #0ea5e9, #84cc16);
+        }
+
+        .publication-item {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-left: 5px solid #bae6fd;
+            border-radius: 0;
+            transition: all 0.3s;
+        }
+
+        .publication-item:hover {
+            background: white;
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.1);
+            border-left-color: #0ea5e9;
+        }
+
+        .pub-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.15rem;
+            color: #0c4a6e;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .pub-authors {
+            font-family: 'Crimson Pro', serif;
+            color: #64748b;
+            font-size: 0.98rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-journal {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            font-size: 0.92rem;
+        }
+
+        .pub-journal a {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .pub-journal a:hover {
+            color: #84cc16;
+            text-decoration: underline;
+        }
+
+        /* Join Cards */
+        .join-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .join-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+        }
+
+        .join-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, #84cc16);
+        }
+
+        .join-card:nth-child(2)::before {
+            background: linear-gradient(90deg, #22d3ee, #fde047);
+        }
+
+        .join-card:nth-child(3)::before {
+            background: linear-gradient(90deg, #84cc16, #0ea5e9);
+        }
+
+        .join-card:nth-child(4)::before {
+            background: linear-gradient(90deg, #fde047, #22d3ee);
+        }
+
+        .join-card:nth-child(5)::before {
+            background: linear-gradient(90deg, #0ea5e9, #fde047);
+        }
+
+        .join-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(14, 165, 233, 0.15);
+        }
+
+        .join-card h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0c4a6e;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .join-card p {
+            font-family: 'Crimson Pro', serif;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd, #d9f99d);
+            padding: 2.5rem;
+            border-radius: 0;
+            margin-top: 3.5rem;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);
+        }
+
+        .contact-info h3 {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0c4a6e;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .contact-info p {
+            font-family: 'Crimson Pro', serif;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-info strong {
+            font-family: 'IBM Plex Mono', monospace;
+            color: #0c4a6e;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e, #0ea5e9, #22d3ee);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            font-family: 'Crimson Pro', serif;
+            margin: 0.6rem 0;
+            font-size: 1rem;
+        }
+
+        footer strong {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .pi-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .pi-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .team-member {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .member-photo {
+                margin: 0 auto;
+            }
+
+            .content-box {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .info-cards {
+                padding: 0 1rem 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">A-LYST+</div>
+            <nav>
+                <button class="nav-link active" onclick="changePage(event, 'home')">HOME</button>
+                <button class="nav-link" onclick="changePage(event, 'research')">RESEARCH</button>
+                <button class="nav-link" onclick="changePage(event, 'people')">PEOPLE</button>
+                <button class="nav-link" onclick="changePage(event, 'publications')">PUBLICATIONS</button>
+                <button class="nav-link" onclick="changePage(event, 'news')">NEWS</button>
+                <button class="nav-link" onclick="changePage(event, 'join')">JOIN</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home" class="page-content active">
+            <div class="hero">
+                <h1 class="hero-title">A-LYST+</h1>
+                <p class="hero-subtitle">Advancing Lysosomal Science & Therapeutics</p>
+                <p class="hero-tagline">Driving the next generation of lysosomal therapies</p>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h3>OUR MISSION</h3>
+                    <p>Our lab is dedicated to advancing lysosomal science to improve outcomes for individuals with mucopolysaccharidoses (MPS) and related lysosomal disorders. Our mission is to integrate rigorous natural history studies with cutting-edge molecular and translational research to accelerate the development of innovative, effective therapies. By bridging deep biological insight with therapeutic innovation, A-LYST+ aims to transform disease understanding into meaningful, patient-centered treatments.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>OUR APPROACH</h3>
+                    <p>We combine rigorous natural history studies with cutting-edge molecular techniques and translational science. Our work integrates deep biological insights with therapeutic innovation, bringing together diverse methodologies to address fundamental questions about lysosomal storage disorders and their treatment.</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>OUR IMPACT</h3>
+                    <p>Our research accelerates transformative treatments for mucopolysaccharidoses (MPS) and related lysosomal disorders by integrating rigorous natural history studies with innovative translational science to deliver meaningful, patient-centered therapies.</p>
+                </div>
+            </div>
+
+            <div class="mps-box">
+                <h2>WHAT ARE MUCOPOLYSACCHARIDOSES & LYSOSOMAL STORAGE DISEASES?</h2>
+                <p>Lysosomal storage disorders are a group of inherited metabolic diseases caused by defects in lysosomal function, most often due to deficiencies in enzymes responsible for degrading macromolecules. These defects lead to the accumulation of undegraded substrates within lysosomes, disrupting cellular homeostasis and ultimately impairing tissue and organ function.</p>
+                <p>The mucopolysaccharidoses (MPS) are a defined subset of LSDs resulting from impaired degradation of glycosaminoglycans (GAGs), key components of the extracellular matrix. Mutations affecting specific lysosomal enzymes prevent the stepwise breakdown of GAGs, leading to their progressive accumulation across multiple organ systems.</p>
+                <p>Although substrate storage is the primary defect, disease progression is driven by broader cellular dysfunction, impaired autophagy, and inflammatory responses. Clinically, both LSDs and MPS present as multisystem disorders, often affecting the central nervous system, skeletal system, and visceral organs, with severity influenced by residual enzyme activity.</p>
+            </div>
+        </div>
+
+        <!-- RESEARCH PAGE -->
+        <div id="research" class="page-content">
+            <div class="content-box">
+                <h2 class="section-title">RESEARCH</h2>
+                <p class="section-subtitle">Our research program focuses on advancing therapeutic strategies for mucopolysaccharidoses and lysosomal storage disorders through comprehensive natural history studies, molecular characterization, and translational research aimed at developing and optimizing patient-centered treatments.</p>
+                
+                <div class="research-areas">
+                    <div class="research-area">
+                        <h3>ENZYME REPLACEMENT THERAPY</h3>
+                        <p>Development and optimization of enzyme replacement therapies for MPS disorders, including novel delivery systems and formulations to improve therapeutic efficacy and patient outcomes.</p>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>GENE THERAPY</h3>
+                        <p>Investigation of gene therapy approaches for lysosomal storage disorders, focusing on safe and effective delivery methods to provide long-term therapeutic benefits.</p>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>NATURAL HISTORY STUDIES</h3>
+                        <p>Comprehensive characterization of disease progression, phenotype-genotype correlations, and identification of prognostic biomarkers to inform therapeutic development and clinical trial design.</p>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>BIOMARKER DISCOVERY</h3>
+                        <p>Identification and validation of biomarkers for early diagnosis, disease monitoring, and treatment response assessment in mucopolysaccharidoses and related disorders.</p>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>NEWBORN SCREENING</h3>
+                        <p>Development and implementation of newborn screening strategies for early detection of MPS disorders, enabling timely intervention and improved patient outcomes.</p>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>ANIMAL MODELS</h3>
+                        <p>Creation and characterization of animal models for MPS disorders to study disease mechanisms and evaluate novel therapeutic approaches in preclinical settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PEOPLE PAGE - Due to length limit, I'll create this in the next part -->
+        <div id="people" class="page-content">
+            <div class="content-box">
+                <h2 class="section-title">OUR TEAM</h2>
+
+                <div class="people-tabs">
+                    <button class="people-tab-btn active" onclick="switchPeopleTab(event, 'team-tab')">TEAM</button>
+                    <button class="people-tab-btn" onclick="switchPeopleTab(event, 'gallery-tab')">GALLERY</button>
+                </div>
+
+                <div id="team-tab" class="people-tab-content active">
+                    <!-- PI Section -->
+                    <div class="pi-container">
+                        <img src="adriana-montano.png" alt="Dr. Adriana Montaño" class="pi-image">
+                        <div class="pi-info">
+                            <h3>ADRIANA MONTAÑO PH.D.</h3>
+                            <p class="title">Vice Dean for Research | Professor of Pediatrics, and Biochemistry and Molecular Biology</p>
+                            
+                            <div id="short-bio">
+                                <p>Dr. Montaño is an internationally recognized scientist with over 30 years of research experience on lysosomal storage disorders, particularly Mucopolysaccharidoses (MPS). She has published over 100 scientific papers, participated in more than 150 conferences globally, and holds 12 patents. <span class="toggle-link" onclick="toggleBio()">READ MORE</span></p>
+                            </div>
+                            
+                            <div id="full-bio" style="display: none;">
+                                <p>Dr. Montaño is an internationally recognized scientist who has made truly outstanding contributions to the field of Mucopolysaccharidoses (MPS) research.</p>
+                                
+                                <p>Dr. Montaño has over 30 years of research experience on lysosomal storage disorders. Her research has set the basis for the understanding of Morquio A disease (MPS IVA) and Sly disease (MPS VII) by providing insights into the natural history of patients showing their heterogeneity in phenotype and genotype. She has developed mouse models for Morquio A disease instrumental to carry out pre-clinical trials to assess novel treatments including enzyme replacement therapy, gene therapy, and substrate reduction therapy. Her work also includes discovery of biomarkers and the development of newborn screening for patients with MPS, which is fundamental for early detection and treatment of patients.</p>
+                                
+                                <p>Dr. Montaño received her B.Sc. degree from the University of Los Andes (Bogotá, Colombia), and Ph.D. degree from Gifu University (Japan), where she was a Monbusho Scholar. She received a Postdoctoral Fellowship from the Japan Society for the Promotion of Science (JSPS) to study molecular evolution at the Graduate University for Advanced Studies (Japan). She also served as a Postdoctoral Fellow at Kobe Pharmaceutical University (Japan) where she studied chondroitin sulfate metabolism. Dr. Montaño received a M.Sc. degree from Saint Louis University in Health Outcomes Research and Evaluation Sciences.</p>
+                                
+                                <p>Dr. Montaño is a recipient of multiple extramural grants and awards and has published over 100 scientific papers. She has participated in more than 150 conferences around the globe and holds 12 patents.</p>
+                                
+                                <p><span class="bio-title">FUN FACT:</span> I love to travel and to see Hayao Miyazaki movies. <span class="toggle-link" onclick="toggleBio()">SHOW LESS</span></p>
+                            </div>
+
+                            <div class="social-icons">
+                                <a href="https://www.linkedin.com/in/adriana-maria-montano-2721a758" target="_blank" title="LinkedIn">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#0077b5">
+                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                    </svg>
+                                </a>
+                                <a href="https://scholar.google.com/citations?user=n4Y27X0AAAAJ" target="_blank" title="Google Scholar">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="#4285f4">
+                                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 2.5c5.246 0 9.5 4.254 9.5 9.5s-4.254 9.5-9.5 9.5-9.5-4.254-9.5-9.5 4.254-9.5 9.5-9.5zm-.844 4.719c-.527-.013-1.05.101-1.531.344-.901.459-1.438 1.289-1.438 2.219 0 1.275 1.021 2.275 2.125 2.469-.434.245-.734.691-.734 1.219 0 .435.234.816.594 1.063-1.275.159-2.406 1.013-2.406 2.406 0 1.472 1.603 2.656 3.563 2.656 2.204 0 3.719-1.403 3.719-2.875 0-1.181-.709-1.772-1.875-2.344-.459-.225-1.072-.472-1.072-.906 0-.372.303-.622.656-.906.675-.538 1.156-1.294 1.156-2.188 0-.997-.469-1.969-1.344-2.5-.084-.05-.169-.097-.256-.141.272-.031.547-.031.828-.031h1.656v-1.125l-3.641-.016zm.063 1.563c.747 0 1.406.766 1.406 1.781 0 1.028-.634 1.781-1.406 1.781-.784 0-1.438-.731-1.438-1.75 0-1.003.628-1.813 1.438-1.813zm.063 8.094c1.059 0 1.938.672 1.938 1.594 0 .956-.966 1.719-2.094 1.719-1.222 0-2.094-.706-2.094-1.656 0-.925 1.088-1.656 2.25-1.656z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="team-section-header">LAB MEMBERS</h3>
+                    <div class="team-list">
+                        <div class="team-member">
+                            <img src="qi.png" alt="Qi Gan" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">QI GAN M.D., M.S.</div>
+                                <div class="member-role">Lab Manager</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Qi earned her MD from Nanjing Medical University in Nanjing, China, and an MS in Computer Science from Webster University.</p>
+                                <p class="member-bio"><span class="bio-title">INTERESTS:</span> In recent years, her research has focused on developing innovative therapeutic approaches for the treatment of MPS IVA (Morquio syndrome).</p>
+                                <p class="member-bio"><span class="bio-title">FUN FACT:</span> Outside the lab, she enjoys practicing yoga and preparing tax returns for others.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="uday.png" alt="Udayanga Wanninayake" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">UDAYANGA WANNINAYAKE PH.D.</div>
+                                <div class="member-role">Postdoctoral Researcher</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Uday is a postdoctoral fellow in Dr. Montaño's Lab since August of 2025. He received his bachelors in chemistry in 2007 from University of Peradeniya, Sri Lanka, and PhD in organic chemistry in 2013 from Michigan State University.</p>
+                                <p class="member-bio"><span class="bio-title">INTERESTS:</span> He is interested in protein biochemistry, enzymology and applications in enzyme replacement therapies for lysosomal storage diseases.</p>
+                                <p class="member-bio"><span class="bio-title">FUTURE GOALS:</span> His goal is to be a principle investigator in developing enzyme replacement therapies for lysosomal storage diseases. Uday hopes to establish a non-profit organization/foundation for the awareness of hemangiosarcoma in dogs.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="aaron.png" alt="Aaron Swenson" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">AARON SWENSON</div>
+                                <div class="member-role">Medical Student</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Aaron is a 4th year medical student at SLU. He received his BS in both biology and music in 2022.</p>
+                                <p class="member-bio"><span class="bio-title">FUTURE GOALS:</span> He is applying to combined internal medicine-pediatrics and categorical pediatrics residency programs with an interest in congenital cardiology, hospitalist medicine, or primary care. He hopes his experiences studying cardiovascular disease in Morquio A will help him implement research into his future career.</p>
+                                <p class="member-bio"><span class="bio-title">FUN FACT:</span> In his free time, he likes to play piano, rock climb, and read.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="gianna.png" alt="Gianna Cimarrusti-Jewhurst" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">GIANNA CIMARRUSTI-JEWHURST</div>
+                                <div class="member-role">Graduate Student</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Gianna is a second-year graduate student working towards a master's degree in anatomy focusing on corneal clouding in Morquio A Syndrome for her thesis project. She received her B.S. in Biomedical Engineering from Washington University in St. Louis in 2024.</p>
+                                <p class="member-bio"><span class="bio-title">INTERESTS:</span> She is interested in all aspects of mucopolysaccharidosis research, especially orthopedic and optical pathophysiology. Her connection to MPS is personal, with her twin brother receiving a MPS I, Hurler Syndrome, diagnosis at seven months old, resulting in her passion for MPS research.</p>
+                                <p class="member-bio"><span class="bio-title">FUTURE GOALS:</span> She is currently applying to medical school to pursue her M.D./Ph.D. and a career in pediatric medicine. Outside of the lab, Gianna can be found with her nose in a book, working on her latest crafty project, or spending time with her family and friends.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/200" alt="Patrick Cannon" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">PATRICK CANNON M.P.H.</div>
+                                <div class="member-role">Research Assistant</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Patrick is a research assistant. He received his B.A. in Biology from Washington University in St. Louis in 2018, and his M.P.H. in Epidemiology and Biostatistics from The Brown School at Washington University in St. Louis in 2022.</p>
+                                <p class="member-bio"><span class="bio-title">INTERESTS:</span> He is interested in bioinformatics, like big data and -omics research, especially as applied to novel gene and protein interactions. He is currently applying for Ph.D. programs, hoping to continue research in bioinformatics.</p>
+                                <p class="member-bio"><span class="bio-title">FUN FACT:</span> He is very interested in open-source software and open science and hopes to continue to use and build tools for advancing research.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="mahi.png" alt="Mahi Besur" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">MAHI BESUR</div>
+                                <div class="member-role">Undergraduate Researcher</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Mahi is a third-year Health Sciences student with minors in Women and Gender Studies and Biology. A native of Wisconsin, she completed her secondary education at Brookfield Central High School.</p>
+                                <p class="member-bio"><span class="bio-title">INTERESTS:</span> Her scholarly interests are focused on metabolic research, with particular emphasis on understanding and addressing health inequities in underserved populations. She is committed to contributing to evidence-based approaches that advance equitable health outcomes. Following the completion of her undergraduate studies, she intends to pursue a Doctor of Medicine (MD) degree.</p>
+                                <p class="member-bio"><span class="bio-title">FUN FACT:</span> Beyond her academic pursuits, Mahi is an accomplished artist and an avid reader. She is also actively engaged in advocacy efforts promoting educational access and equity in scientific and medical research.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="meghana.png" alt="Meghana Govindaraj" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">MEGHANA GOVINDARAJ</div>
+                                <div class="member-role">Undergraduate Researcher</div>
+                                <p class="member-bio"><span class="bio-title">BACKGROUND:</span> Meghana is a fourth-year student at Saint Louis University studying Neuroscience. She is interested in research relating to neurological disorders and pediatric populations, specifically children with developmental disorders.</p>
+                                <p class="member-bio"><span class="bio-title">FUTURE GOALS:</span> Upon completing of her degree, she hopes to attend medical school and pursue a career in pediatric neurology.</p>
+                                <p class="member-bio"><span class="bio-title">FUN FACT:</span> In her free time, she is an amateur nail artist and enjoys working as a camp counselor for children with autism.</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/200" alt="Linda Winter" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">LINDA WINTER</div>
+                                <div class="member-role">Research Technician</div>
+                                <p class="member-bio">Bio coming soon</p>
+                            </div>
+                        </div>
+
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/200" alt="Tuana Yuzer" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name">TUANA YUZER</div>
+                                <div class="member-role">Undergraduate Researcher</div>
+                                <p class="member-bio">Bio coming soon</p>
+                            </div>
+                        </div>
+
+                        <!-- EASTER EGG -->
+                        <div class="team-member easter-egg-member">
+                            <img src="https://via.placeholder.com/200" alt="Dr. Anthony Anzell" class="member-photo">
+                            <div class="member-info">
+                                <div class="member-name"><a href="https://prelabhomework.github.io/HHT-Lab/" target="_blank" style="color: #0c4a6e; text-decoration: none;">ANTHONY ANZELL PH.D.</a></div>
+                                <div class="member-role">PI</div>
+                                <p class="member-bio">Dr. Anthony Anzell is the PI of the <a href="https://prelabhomework.github.io/HHT-Lab/" target="_blank" style="color: #0ea5e9; font-weight: 600;">Anzell Lab</a> but he often is a part of our lab events and activities. We're grateful for the collaboration!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Tab -->
+                <div id="gallery-tab" class="people-tab-content">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="gallery-1-slu-campus.png" alt="SLU Campus">
+                            <p class="gallery-caption">SLU campus (College Church)</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-2-qi-award.png" alt="Qi receiving award">
+                            <p class="gallery-caption">Qi receives her 30 years of service award</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-3-tuana-birthday.png" alt="Tuana birthday">
+                            <p class="gallery-caption">Tuana's birthday lab photo</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-4-meghana-worlds.png" alt="Meghana at WORLDS">
+                            <p class="gallery-caption">Meghana presenting at WORLDS</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-5-gianna-worlds.png" alt="Gianna at WORLDS">
+                            <p class="gallery-caption">Gianna presenting at WORLDS</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-6-trio-worlds.png" alt="Trio at WORLDS">
+                            <p class="gallery-caption">Dr. Montaño, Gianna, Meghana at WORLDS</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-7-gianna-billy.png" alt="Gianna with Billy">
+                            <p class="gallery-caption">Gianna with Billy at tree decoration event at DRC 2025</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-8-gianna-idbi.png" alt="Gianna at IDBI">
+                            <p class="gallery-caption">Gianna at IDBI</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-9-meghana-idbi.png" alt="Meghana at IDBI">
+                            <p class="gallery-caption">Meghana at IDBI</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-10-nithin-idbi.png" alt="Nithin at IDBI">
+                            <p class="gallery-caption">Nithin at IDBI</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-11-summer-lab.png" alt="Summer lab group">
+                            <p class="gallery-caption">Montaño Lab Summer 25</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-12-lmsa.png" alt="LMSA event">
+                            <p class="gallery-caption">Latino Medical Student Association (LMSA) Feb 14, 2025 at SLU SOM</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-13-lab-lunch.png" alt="Lab lunch">
+                            <p class="gallery-caption">Montaño Lab at lab lunch</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-14-tuana-psd.png" alt="Tuana at PSD">
+                            <p class="gallery-caption">Tuana at SOM PSD 2026</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-15-tuana-massurc.png" alt="Tuana at MASSURC">
+                            <p class="gallery-caption">Tuana at MASSURC 2026</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="gallery-16-iciem.png" alt="ICIEM presentation">
+                            <p class="gallery-caption">ICIEM 2025 presentation photo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PUBLICATIONS PAGE -->
+        <div id="publications" class="page-content">
+            <div class="content-box">
+                <h2 class="section-title">PUBLICATIONS</h2>
+
+                <div class="publication-year">2025</div>
+                
+                <div class="publication-item">
+                    <div class="pub-title">rhGALNS Enzyme Stability in Physiological Buffers: Implications for Sustained Release</div>
+                    <div class="pub-authors">Samuel Ruesing, Samuel Stealey, Qi Gan, Linda Winter, Adriana M. Montaño & Silviya P. Zustiak</div>
+                    <div class="pub-journal">Applied Biochemistry and Biotechnology. 2025;197:5148–5167. DOI: <a href="https://doi.org/10.1007/s12010-025-05266-5" target="_blank">https://doi.org/10.1007/s12010-025-05266-5</a></div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="pub-title">Purifying selection of the lysosomal enzymes arylsulfatase A and beta-galactocerebrosidase and their evolutionary impact on myelin integrity</div>
+                    <div class="pub-authors">Matthew A Luetzen, Richik Chakraborty, Oscar Andrés Moreno-Ramos, Olga Yaneth Echeverri-Peña, Yoko Satta, Adriana M Montaño</div>
+                    <div class="pub-journal">Journal of Lipid Research. 2025;66(4):100769. DOI: <a href="https://doi.org/10.1016/j.jlr.2025.100769" target="_blank">https://doi.org/10.1016/j.jlr.2025.100769</a></div>
+                </div>
+
+                <div class="publication-year">2024</div>
+
+                <div class="publication-item">
+                    <div class="pub-title">Growth patterns in patients with mucopolysaccharidosis VII</div>
+                    <div class="pub-authors">Adriana M Montaño, Agnieszka Różdżyńska-Świątkowska, Agnieszka Jurecka, Antonio Nino Ramirez, Lin Zhang, Deborah Marsden, Raymond Y Wang, Paul Harmatz</div>
+                    <div class="pub-journal">Molecular Genetics and Metabolism Reports. 2024;36:100987. DOI: <a href="https://doi.org/10.1016/j.ymgmr.2023.100987" target="_blank">https://doi.org/10.1016/j.ymgmr.2023.100987</a></div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="pub-title">DLX6 and MSX1 from saliva samples as potential predictors of mandibular size: A cross-sectional study</div>
+                    <div class="pub-authors">Rachel Bryn V Cooper, Ki Beom Kim, Donald R Oliver, Eric Armbrecht, Rolf G Behrents, Adriana M Montaño</div>
+                    <div class="pub-journal">American Journal of Orthodontics and Dentofacial Orthopedics. 2024;163(3):368-377. DOI: <a href="https://doi.org/10.1016/j.ajodo.2021.12.022" target="_blank">https://doi.org/10.1016/j.ajodo.2021.12.022</a></div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="pub-title">Hydrogel delivery device for the in vitro and in vivo sustained release of active rhGALNS enzyme</div>
+                    <div class="pub-authors">Michael Flanagan, Qi Gan, Saahil Sheth, Rachel Schafer, Samuel Ruesing, Linda E Winter, Karoly Toth, Silviya P Zustiak, Adriana M Montaño</div>
+                    <div class="pub-journal">Pharmaceuticals. 2024;16(7):931. DOI: <a href="https://doi.org/10.3390/ph16070931" target="_blank">https://doi.org/10.3390/ph16070931</a></div>
+                </div>
+
+                <div class="publication-year">2022 AND EARLIER</div>
+                <div class="publication-item">
+                    <div class="pub-title">Complete Publication List</div>
+                    <div class="pub-authors">See Dr. Montaño's complete publication record on Google Scholar</div>
+                    <div class="pub-journal"><a href="https://scholar.google.com/citations?user=n4Y27X0AAAAJ" target="_blank">VIEW ALL PUBLICATIONS →</a></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEWS PAGE -->
+        <div id="news" class="page-content">
+            <div class="content-box">
+                <h2 class="section-title">NEWS & EVENTS</h2>
+                <p class="section-subtitle">Stay updated on the latest developments, achievements, and activities from the lab.</p>
+                
+                <div style="text-align: center; padding: 4rem 2rem;">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 2rem;">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <p style="color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">News and events coming soon. Check back for updates on lab achievements, conference presentations, publications, and team milestones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JOIN PAGE -->
+        <div id="join" class="page-content">
+            <div class="content-box">
+                <h2 class="section-title">JOIN OUR TEAM</h2>
+                <p class="section-subtitle">We are always looking for motivated individuals to join our research group. If you are passionate about lysosomal science and advancing therapeutics for rare diseases, we'd love to hear from you.</p>
+
+                <div class="join-grid">
+                    <div class="join-card">
+                        <h3>PHD STUDENTS</h3>
+                        <p>We accept graduate students through programs at Saint Louis University. Interested applicants should send their <strong>resume/CV</strong> and <strong>contact information for 2 recommenders</strong> to Dr. Montaño.</p>
+                    </div>
+
+                    <div class="join-card">
+                        <h3>MASTER'S STUDENTS</h3>
+                        <p>We welcome master's students interested in lysosomal storage disorders research. Please send your <strong>resume/CV</strong> and <strong>contact information for 2 recommenders</strong> to Dr. Montaño.</p>
+                    </div>
+
+                    <div class="join-card">
+                        <h3>UNDERGRADUATE RESEARCHERS</h3>
+                        <p>Undergraduate students should reach out with their <strong>resume</strong>, <strong>expected weekly time commitment</strong>, and a <strong>brief message about their research interests</strong>.</p>
+                    </div>
+
+                    <div class="join-card">
+                        <h3>SUMMER STUDENTS</h3>
+                        <p>We offer summer research opportunities for undergraduate students and high school students. Please include your <strong>resume</strong>, <strong>expected availability</strong>, and a brief statement of interest.</p>
+                    </div>
+
+                    <div class="join-card">
+                        <h3>POSTDOCTORAL FELLOWS</h3>
+                        <p>Postdoctoral candidates with experience in lysosomal disorders, molecular biology, enzymology, or translational research are encouraged to apply. Please include your CV, research statement, and references.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h3>CONTACT INFORMATION</h3>
+                    <p><strong>EMAIL:</strong> adriana.montano@health.slu.edu</p>
+                    <p><strong>DEPARTMENT:</strong> Pediatrics, Saint Louis University School of Medicine</p>
+                    <p><strong>DEPARTMENT:</strong> Biochemistry and Molecular Biology, Saint Louis University School of Medicine</p>
+                    <p><strong>ADDRESS:</strong> Saint Louis University School of Medicine, St. Louis, MO 63104</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><strong>A-LYST+ | ADVANCING LYSOSOMAL SCIENCE & THERAPEUTICS</strong></p>
+        <p>Department of Pediatrics | Biochemistry and Molecular Biology</p>
+        <p>Saint Louis University School of Medicine</p>
+        <p>© 2026 | Last Updated: May 2026</p>
+    </footer>
+
+    <script>
+        function changePage(evt, pageName) {
+            var pages = document.getElementsByClassName("page-content");
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove("active");
+            }
+
+            var navLinks = document.getElementsByClassName("nav-link");
+            for (var i = 0; i < navLinks.length; i++) {
+                navLinks[i].classList.remove("active");
+            }
+
+            document.getElementById(pageName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            window.scrollTo(0, 0);
+        }
+
+        function switchPeopleTab(evt, tabName) {
+            var tabContents = document.getElementsByClassName("people-tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            var tabBtns = document.getElementsByClassName("people-tab-btn");
+            for (var i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleBio() {
+            var shortBio = document.getElementById("short-bio");
+            var fullBio = document.getElementById("full-bio");
+            
+            if (fullBio.style.display === "none") {
+                shortBio.style.display = "none";
+                fullBio.style.display = "block";
+            } else {
+                shortBio.style.display = "block";
+                fullBio.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
